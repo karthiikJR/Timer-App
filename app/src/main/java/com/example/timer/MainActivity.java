@@ -58,9 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startTimerBtn(View view) {
-        Log.i("Button pressed","This might be the issue");
         btnClicked();
-        Log.i("GetProgress()",String.valueOf(timerBar.getProgress()));
         timerToDisplay = new CountDownTimer(timeRemaining*1000, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
@@ -68,12 +66,8 @@ public class MainActivity extends AppCompatActivity {
                     mediaPlayer1.start();
                     timeRemaining--;
                     calculateTime(timeRemaining);
-                    Log.i("Time Done Progress Time", String.valueOf(progressTime));
-                    Log.i("Timer Done Time Remaining", String.valueOf(timeRemaining));
                     timerView.setText(min + ":" + sec);
                     timerBar.setProgress((int) timeRemaining);
-
-
                 }
 
                 @Override
@@ -109,15 +103,12 @@ public class MainActivity extends AppCompatActivity {
         long localMin = time/60;
         long localSec = time%60;
 
-        Log.i("Local Seconds",String.valueOf(localSec));
-
         min = String.valueOf(localMin);
 
         if(localSec<10) {
             sec = "0"+String.valueOf(localSec);
         }else
             sec = String.valueOf(localSec);
-        Log.i("Seconds",sec);
 
     }
 
@@ -135,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
         timerBar.setMin(minVal);
 
         timerBar.setProgress(defaultVal);
-        Log.i("GetProgress()",String.valueOf(timerBar.getProgress()));
         calculateTime((long) defaultVal);
         timerView.setText(min+":"+sec);
 
@@ -144,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 //progressTime = progress;
                 timeRemaining = progress;
-                Log.i("Progress Time",String.valueOf(progressTime));
                 calculateTime(progress);
                 timerView.setText(min+":"+sec);
             }
